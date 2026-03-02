@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terminal de Inteligencia - Proyecto U-Code</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="terminal-container">
+        <header class="terminal-header">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <p id="p-tracker">ESTADO: NIVEL 1 / 5</p>
+                <p id="lives-tracker">INTENTOS: <span id="heart-icons">███</span></p>
+            </div>
+        </header>
+
+        <main id="game-container">
+            <section id="page1" class="page active">
+                <h2>MISIÓN 1: IDENTIFICACIÓN</h2>
+                <p>Introduce el código de identificación de este proyecto.</p>
+                <input type="text" id="ans1" placeholder="CÓDIGO...">
+                <div class="actions">
+                    <button onclick="check(1, 'U-CODE 006')">VALIDAR</button>
+                    <button class="btn-hint" onclick="showHint('U-CODE {007-001}')">PISTA</button>
+                </div>
+            </section>
+
+            <section id="page2" class="page">
+                <h2>MISIÓN 2: VISIÓN TÉRMICA</h2>
+                <p>Pasa el cursor para detectar la huella digital del archivo.</p>
+                <div class="hover-zone"><span class="hidden-answer">Carpeta no encontrada C/:programfiles/HL3</span></div>
+                <input type="text" id="ans2" placeholder="TEXTO DETECTADO...">
+                <div class="actions">
+                    <button onclick="check(2, 'HL3')">DESBLOQUEAR</button>
+                    <button class="btn-hint" onclick="showHint('La respuesta es la carpeta que se busca')">PISTA</button>
+                </div>
+            </section>
+
+            <section id="page3" class="page">
+                <h2>MISIÓN 3: RESISTENCIA DE SERVIDOR</h2>
+                <p>Ajusta los nodos para llegar exactamente a 120Ω.</p>
+                <div class="voltage-controls">
+                    <button id="n1" onclick="toggleNode(1, 35)">CYAN</button>
+                    <button id="n2" onclick="toggleNode(2, 40)">AMARILLO</button>
+                    <button id="n3" onclick="toggleNode(3, 45)">MAGENTA</button>
+                    <button id="n4" onclick="toggleNode(4, 50)">NARANJA</button>
+                    <button id="n5" onclick="toggleNode(5, 70)">VERDE</button>
+                </div>
+                <div class="v-progress-container"><div id="v-bar"></div></div>
+                <p>LECTURA: <span id="v-val">0</span>Ω</p>
+                <input type="text" id="ans3" value="SISTEMA BLOQUEADO" readonly>
+                <button onclick="check(3, 'ESTABLE')">RECONECTAR</button>
+                <button class="btn-hint" onclick="showHint('CYAN+35 / AMARILLO+40 / MAGENTA+45 / NARANJA+50 / VERDE+70')">PISTA</button>
+            </section>
+
+            <section id="page4" class="page">
+                <h2>MISIÓN 4: DESCIFRADO DE SALIDA</h2>
+                <p>Traduce el código de encriptación interceptado: KWPO</p>
+                <input type="text" id="ans4" placeholder="MENSAJE...">
+                <div class="actions">
+                    <button onclick="check(4, 'HTML')">DESCIFRAR</button>
+                    <button class="btn-hint" onclick="showHint('El texto esta encriptado con el cifrado Cesar A-->D  /  S-->V /  F-->I . Para desencriptarlo, utiliza el cifrado a la inversa.')">PISTA</button>
+                </div>
+            </section>
+
+            <section id="page5" class="page">
+                <h2>MISIÓN 5: SECUENCIA DE NÚCLEO</h2>
+                <p>Completa la secuencia lógica para abrir la compuerta final:</p>
+                <p style="font-size: 1.5em; letter-spacing: 5px;">512, 1024, 2048, ??</p>
+                <input type="text" id="ans5" placeholder="NÚMERO FALTANTE...">
+                <div class="actions">
+                    <button onclick="check(5, '4096')">ACCEDER AL EXPEDIENTE</button>
+                    <button class="btn-hint" onclick="showHint('los numeros se multiplican por 2')">PISTA</button>
+                </div>
+            </section>
+
+            <section id="page-download" class="page">
+                <h2>EXTRAYENDO ARCHIVOS ENCRIPTADOS...</h2>
+                <p>No desconecte ni apague la terminal mientras se descarga.</p>
+                <div class="v-progress-container">
+                    <div id="download-bar" style="width: 0%; height: 100%; background: var(--neon-green); box-shadow: 0 0 15px var(--neon-green);"></div>
+                </div>
+                <p id="download-status">0% COMPLETO</p>
+            </section>
+
+            <section id="page6" class="page expediente-final">
+                <h1 class="flash">¡EXPEDIENTE RECUPERADO!</h1>
+                <div class="document-content">
+                    <h3>REPORTE CLASIFICADO: OPERACIÓN U-CODE 006</h3>
+                    <p><strong>ESTADO:</strong> Descifrado con éxito.</p>
+                    <p><strong>CONTENIDO:</strong> Bienvenido agente, en el siguiente documento se encuentra informacion del GTAVII, la maquina de movimiento perpetuo y la cura contra el cancer.</p>
+                </div>
+                <button onclick="location.reload()">REINICIAR TERMINAL</button>
+            </section>
+
+            <section id="page-gameover" class="page" style="text-align: center;">
+                <h1 style="color: var(--alert-red); font-size: 3em;" class="flash">SISTEMA BLOQUEADO</h1>
+                <p>Demasiados intentos fallidos. Su ubicación esta siendo rastreada.</p>
+                <p>Por favor reinicie la terminal para eliminar los rastros</p>
+                <button onclick="location.reload()" style="border-color: var(--alert-red); color: var(--alert-red);">REINICIAR TERMINAL</button>
+</section>
+        </main>
+
+        <footer class="terminal-footer">
+            <p id="feedback-msg"></p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
